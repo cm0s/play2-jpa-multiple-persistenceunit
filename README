@@ -1,0 +1,23 @@
+# Play framework app + JPA with multiple persistenceUnit / DB
+
+This is a play 2.1 sample application which show how to connect two different databases with the use of two
+different persistenceUnits.
+
+## What this sample do?
+There is two actions in the Application controller which create and persist a User and a Company object in a H2
+database with the use of the "defaultPersistenceUnit" and the "otherPersistenceUnit" declared in the persistence.xml
+file.
+
+## How to use this sample?
+1. Clone this project
+2. Start the application ($play run)
+3. Use http://localhost:9000/test1 or http://localhost:9000/test2 to run one of the example.
+
+A User and a Company object is persisted in the H2 memory database.
+
+To browse the H2 database, use the $h2-browser command in the play console.
+
+H2 databases can be replaced by other databases like MySQL. Just modify it in the application.conf and set the correct
+hibernate.dialect in the persistence.xml file.
+
+
