@@ -3,7 +3,7 @@ package models;
 import javax.persistence.*;
 
 @Entity
-public class Company {
+public class Company extends Model {
     @Id
     @GeneratedValue
     public Long id;

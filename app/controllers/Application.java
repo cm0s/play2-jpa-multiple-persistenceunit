@@ -26,7 +26,7 @@ public class Application extends Controller {
         return ok();
     }
 
-    //This action run with the otherPersistenceUnit
+    //This action run with the defaultPersistenceUnit
     @Transactional
     public static Result test2() {
         JPA.em().persist(new User("Ryan"));
@@ -41,6 +41,20 @@ public class Application extends Controller {
         } catch (Throwable throwable) {
             throw new RuntimeException(throwable);
         }
+        return ok();
+    }
+
+    //This action run with the defaultPersistenceUnit
+    @Transactional
+    public static Result test3() {
+        User user = new User("Alice");
+        Company company = new Company("BigOrangeCompany");
+
+        // With the use of a Transactional annotation inside the Model class the correct associated persistenceUnit is
+        // used to persist the User and Company object so it's not necessary to define it inside the action method.
+        // It's a better practice to make the model responsible to use the correct transaction instead of the action.
+        user.save();
+        company.save();
         return ok();
     }
 }

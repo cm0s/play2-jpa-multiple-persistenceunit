@@ -4,14 +4,21 @@ This is a play 2.1 sample application which show how to connect two different da
 different persistenceUnits.
 
 ## What this sample do?
-There is two actions in the Application controller which create and persist a User and a Company object in a H2
+There is three actions in the Application controller which create and persist a User and a Company object in a H2
 database with the use of the "defaultPersistenceUnit" and the "otherPersistenceUnit" declared in the persistence.xml
 file.
+
+In test1 and test2 JPA.em().persist() is directly used in the action and in the test3 JPA.em().persist() is used inside
+the Entity(Model) classes.
+
+When JPA.em().persist() is used inside an action the correct Transaction has to be specified manually (see test1 and 2),
+however when JPA.em().persist() is used directly in one of the Model's methods (see test3) the correct persistence is
+used based on what is declared in the config files.
 
 ## How to use this sample?
 1. Clone this project
 2. Start the application ($play run)
-3. Use http://localhost:9000/test1 or http://localhost:9000/test2 to run one of the example.
+3. Use http://localhost:9000/test1, http://localhost:9000/test2, http://localhost:9000/test2 to run one of the example.
 
 A User and a Company object is persisted in the H2 memory database.
 
