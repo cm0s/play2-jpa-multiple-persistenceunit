@@ -12,13 +12,17 @@ In test1 and test2 JPA.em().persist() is directly used in the action and in the 
 the Entity(Model) classes.
 
 When JPA.em().persist() is used inside an action the correct Transaction has to be specified manually (see test1 and 2),
-however when JPA.em().persist() is used directly in one of the Model's methods (see test3) the correct persistence is
-used based on what is declared in the config files.
+however when JPA.em().persist() is used directly in one of the Model's methods (see test3) the correct persistence
+should be used based on what is declared in the config files. But it's not. So the test3 generate an error :
+    IllegalArgumentException: Unknown entity: models.Company
+This error is generated because the JPA entity manager is not capable to use a transaction with the otherPersistenceUnit
+declared in the persistence.xml.
 
 ## How to use this sample?
 1. Clone this project
 2. Start the application ($play run)
-3. Use http://localhost:9000/test1, http://localhost:9000/test2, http://localhost:9000/test2 to run one of the example.
+3. Use http://localhost:9000/test1, http://localhost:9000/test2 to run one of the working example.
+3. Use http://localhost:9000/test3 to run the not working example.
 
 A User and a Company object is persisted in the H2 memory database.
 

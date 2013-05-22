@@ -50,11 +50,10 @@ public class Application extends Controller {
         User user = new User("Alice");
         Company company = new Company("BigOrangeCompany");
 
-        // With the use of a Transactional annotation inside the Model class the correct associated persistenceUnit is
-        // used to persist the User and Company object so it's not necessary to define it inside the action method.
-        // It's a better practice to make the model responsible to use the correct transaction instead of the action.
+        //Correct transaction should be used depending on what is defined in the persistence.xml file. But it's not...
         user.save();
         company.save();
+
         return ok();
     }
 }
